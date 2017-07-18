@@ -45,7 +45,6 @@ const player = {
 
 };
 
-// If orderCompletedArr equals orderArr, customer's happiness=True
 
 
 
@@ -65,6 +64,10 @@ $('.menu-items').on('click', (e) => {
 $('button').on('click', (e) => {
   player.checkOrder();
   console.log(customer1.happiness);
+  customer1.payForOrder();
+  console.log("Player coins: " + player.coins);
+  console.log("Player xp: " + player.xp);
+
 });
 
 
