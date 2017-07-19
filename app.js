@@ -1,12 +1,20 @@
 // windows onload
 $(() => {
 
-
+// Array of food on menu
+const menu = ["hamburger", "sandwich", "pizza", "coffee", "milkshake", "cupcake", "pie", "hot dog", "fries", "salad", "soda", "cake", "ice cream"];
 
 
 const customer = {
   happiness: false,
-  orderArr: ["blueberry", "cake", "coffee"],
+  orderArr: [],
+  randomFood(num) {
+    console.log("food:");
+    for(let i = 0; i < num; i++) {
+      const newFood = menu[Math.floor(Math.random() * menu.length)];
+      this.orderArr.push(newFood);
+    }
+  },
   customerOrder() {
     for(let i = 0; i < this.orderArr.length; i++) {
       const order = $('<li/>').html(this.orderArr[i]);
@@ -21,9 +29,17 @@ const customer = {
       $('#coins').text('Coins: ' + player.coins);
       $('#xp').text('XP: ' + player.xp);
       $('#customers-left').text('Customers Left: ' + player.customersLeft);
+      this.happiness = false;
+      console.log(customer.happiness);
+      this.randomFood(Math.floor(Math.random() * (13 - 1)) + 1);
+      this.customerOrder();
     }
   }
 };
+
+// menu items arrays
+customer.randomFood(1);
+// customer.randomFood(Math.floor(Math.random() * (13 - 1)) + 1);
 
 customer.customerOrder();
 
