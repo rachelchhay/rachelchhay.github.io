@@ -32,6 +32,7 @@ const customer = {
       $('#coins').text('Coins: ' + player.coins);
       $('#xp').text('XP: ' + player.xp);
       $('#customers-left').text('Customers Left: ' + player.customersLeft);
+      // reset customer properties
       this.happiness = false;
       $('.customer li').remove();
     } else {
@@ -40,6 +41,7 @@ const customer = {
       $('#coins').text('Coins: ' + player.coins);
       $('#xp').text('XP: ' + player.xp);
       $('#customers-left').text('Customers Left: ' + player.customersLeft);
+      // reset customer properties
       $('.customer li').remove();
     }
   }
@@ -107,6 +109,8 @@ $('#order-up').on('click', (e) => {
 });
 
 $('#next').on('click', (e) => {
+  customer.orderArr = [];
+  player.orderCompletedArr = [];
   start();
 })
 
