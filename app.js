@@ -2,10 +2,6 @@
 $(() => {
 
 
-// const foodArray = ["cake", "blueberry", "strawberry", "cupcake", "vanilla frosting", "chocolate frosting", "coffee", "smoothie", "hamburger", "hot dog", "ketchup", "lettuce"];
-
-
-
 
 
 const customer = {
@@ -21,6 +17,10 @@ const customer = {
     if(this.happiness === true) {
       player.coins++;
       player.xp++;
+      player.customersLeft--;
+      $('#coins').text('Coins: ' + player.coins);
+      $('#xp').text('XP: ' + player.xp);
+      $('#customers-left').text('Customers Left: ' + player.customersLeft);
     }
   }
 };
@@ -30,6 +30,7 @@ customer.customerOrder();
 const player = {
   coins: 0,
   xp: 0,
+  customersLeft: 1,
   orderCompletedArr: [],
   checkOrder() {
     // check if two arrays match
@@ -75,7 +76,7 @@ $('button').on('click', (e) => {
   customer.payForOrder();
   console.log("Player coins: " + player.coins);
   console.log("Player xp: " + player.xp);
-
+  console.log("Customers left: " + player.customersLeft);
 });
 
 

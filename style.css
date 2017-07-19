@@ -11,3 +11,25 @@ body {
   height: 100px;
   width: 200px;
 }
+
+#game-status {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#menu {
+  /*border: 1px solid blue;*/
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 20px 100px;
+}
+
+.menu-items {
+  /*border: 1px solid pink;*/
+  width: 100px;
+  margin: 10px 0;
+}
