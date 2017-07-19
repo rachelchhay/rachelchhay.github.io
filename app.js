@@ -1,15 +1,18 @@
 // windows onload
 $(() => {
 
+  // Remove current customer order
+  // Loop through customer
+
 // Array of food on menu
 const menu = ["hamburger", "sandwich", "pizza", "coffee", "milkshake", "cupcake", "pie", "hot dog", "fries", "salad", "soda", "cake", "ice cream"];
 
 
+// customer object========================================
 const customer = {
   happiness: false,
   orderArr: [],
   randomFood(num) {
-    console.log("food:");
     for(let i = 0; i < num; i++) {
       const newFood = menu[Math.floor(Math.random() * menu.length)];
       this.orderArr.push(newFood);
@@ -30,23 +33,25 @@ const customer = {
       $('#xp').text('XP: ' + player.xp);
       $('#customers-left').text('Customers Left: ' + player.customersLeft);
       this.happiness = false;
-      console.log(customer.happiness);
-      this.randomFood(Math.floor(Math.random() * (13 - 1)) + 1);
-      this.customerOrder();
+      $('.customer li').remove();
+    } else {
+      player.coins--;
+      player.xp--;
+      $('#coins').text('Coins: ' + player.coins);
+      $('#xp').text('XP: ' + player.xp);
+      $('#customers-left').text('Customers Left: ' + player.customersLeft);
+      $('.customer li').remove();
     }
   }
 };
 
-// menu items arrays
-customer.randomFood(1);
-// customer.randomFood(Math.floor(Math.random() * (13 - 1)) + 1);
 
-customer.customerOrder();
 
+// player object========================================
 const player = {
   coins: 0,
   xp: 0,
-  customersLeft: 1,
+  customersLeft: 5,
   orderCompletedArr: [],
   checkOrder() {
     // check if two arrays match
@@ -70,13 +75,19 @@ const player = {
 
 };
 
+// start game function ======================================
+const start = () => {
+  customer.randomFood(1);
+  customer.customerOrder();
+}
 
+// customer.randomFood(Math.floor(Math.random() * (13 - 1)) + 1);
 
-
-
-
+start();
 
 $('#menu li').addClass('menu-items');
+
+// click events =============================================
 
 $('.menu-items').on('click', (e) => {
   const menuText = $(e.currentTarget).text().toLowerCase();
@@ -86,7 +97,7 @@ $('.menu-items').on('click', (e) => {
 
 // order finished button
 
-$('button').on('click', (e) => {
+$('#order-up').on('click', (e) => {
   player.checkOrder();
   console.log(customer.happiness);
   customer.payForOrder();
@@ -95,7 +106,9 @@ $('button').on('click', (e) => {
   console.log("Customers left: " + player.customersLeft);
 });
 
-
+$('#next').on('click', (e) => {
+  start();
+})
 
 
 
