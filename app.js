@@ -46,7 +46,6 @@ const customer = {
 };
 
 
-
 // player object========================================
 const player = {
   coins: 0,
@@ -72,11 +71,8 @@ const player = {
       console.log("Arrays are different lengths");
       console.log(this.orderCompletedArr);
       console.log(customer.orderArr);
-
     }
-
   }
-
 
 };
 
@@ -89,7 +85,7 @@ const nextOff = () => {
 // start game round 1 ======================================
 let round = 0;
 const start = () => {
-    customer.randomFood(1 + round);
+  customer.randomFood(1 + round);
     // customer.randomFood(Math.floor(Math.random() * (5 - 3)) + 3);
 
   customer.customerOrder();
@@ -121,16 +117,20 @@ class Rounds {
     player.customersLeft = num;
     $('#customers-left').text('Customers Left: ' + player.customersLeft);
   }
-  changeRandomFood (randomFunction) {
-    customer.randomFood(randomFunction);
-    customer.customerOrder();
+  timer (num) {
+    let timeLeft = num;
+    setInterval(countdown, 1000);
+
+    const countdown = () => {
+      num--;
+      $('#timer').text(num);
+    }
+
   }
 };
 
 const secondRound = new Rounds();
-
-
-
+const thirdRound = new Rounds();
 
 // click events =============================================
 $('#menu li').addClass('menu-items');
@@ -141,10 +141,6 @@ $('.menu-items').on('click', (e) => {
   console.log(player.orderCompletedArr);
 });
 
-
-
-// order finished button
-
 $('#order-up').on('click', (e) => {
   player.checkOrder();
   console.log(customer.happiness);
@@ -152,6 +148,15 @@ $('#order-up').on('click', (e) => {
   console.log("Player coins: " + player.coins);
   console.log("Player xp: " + player.xp);
   console.log("Customers left: " + player.customersLeft);
+
+  // win or lose the game
+  if(player.coins <= 0 || player.xp <= 0) {
+    alert("You lose :(");
+    setTimeout( function () {location.reload(true)}, 1000);
+  } else if(player.coins === 7) {
+    alert("You win! :)");
+    setTimeout( function () {location.reload(true)}, 1000);
+  }
 });
 
 $('#next').on('click', (e) => {
@@ -163,13 +168,12 @@ $('#next').on('click', (e) => {
     nextOff();
   }
 
-
+// ROUND 2 ====================================
   if(player.coins === 2) {
+    round = 2;
     const round2 = prompt("You have enough coins to go on to level 2! Would you like to keep going?", "yes/no");
     if(round2 === "yes" || round2 === "Yes" || round2 === "y") {
       alert("Click the Next Round button");
-
-      round = 2;
 
       $('.customer li').remove();
 
@@ -179,18 +183,42 @@ $('#next').on('click', (e) => {
         console.log("clicked next round");
         secondRound.addMenuItem("Waffles", "Fried Chicken", "Spaghetti");
         secondRound.changeCustomersLeft(8);
-        secondRound.changeRandomFood(Math.floor(Math.random() * (7 - 3)) + 3);
+        secondRound.timer(60);
+        customer.customerOrder();
         $('#next-round').off('click');
       });
 
     }
   }
+
+// ROUND 3 ====================================
+  if(player.coins === 5) {
+    round = 3;
+    const round2 = prompt("You have enough coins to go on to level 3! Would you like to keep going?", "yes/no");
+    if(round2 === "yes" || round2 === "Yes" || round2 === "y") {
+      alert("Click the Next Round button");
+
+      $('.customer li').remove();
+
+      $('#next-round').on('click', (e) => {
+        console.log("clicked next round");
+        secondRound.addMenuItem("Pancakes", "Grilled Cheese", "Cookies");
+        secondRound.changeCustomersLeft(7);
+        customer.customerOrder();
+        $('#next-round').off('click');
+      });
+
+    }
+  }
+
+
+
+
 });
 
 
 
 
-// Math.random argument isn't changing
 
 
 
