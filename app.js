@@ -117,20 +117,28 @@ class Rounds {
     player.customersLeft = num;
     $('#customers-left').text('Customers Left: ' + player.customersLeft);
   }
-  timer (num) {
-    let timeLeft = num;
-    setInterval(countdown, 1000);
 
-    const countdown = () => {
-      num--;
-      $('#timer').text(num);
-    }
-
-  }
 };
 
 const secondRound = new Rounds();
 const thirdRound = new Rounds();
+
+// Set Timer Function =======================================
+let timeLeft;
+let startInterval;
+const timer = (num) => {
+  timeLeft = num;
+  const countdown = () => {
+    num--;
+    $('#timer').text(num);
+  }
+  startInterval = setInterval(countdown, 1000);
+
+  if(timeLeft === 0) {
+    clearInterval(startInterval);
+  }
+}
+
 
 // click events =============================================
 $('#menu li').addClass('menu-items');
@@ -180,19 +188,25 @@ $('#next').on('click', (e) => {
       $('body').append($('<button>').text("Next Round").attr('id', 'next-round'));
 
       $('#next-round').on('click', (e) => {
+        timer(60);
         console.log("clicked next round");
         secondRound.addMenuItem("Waffles", "Fried Chicken", "Spaghetti");
-        secondRound.changeCustomersLeft(8);
-        secondRound.timer(60);
+        secondRound.changeCustomersLeft(6);
         customer.customerOrder();
+        // if(player.coins < 11 && timeLeft <= 0) {
+        //   alert("You lose...");
+        //   setTimeout( function () {location.reload(true)}, 1000);
+        // };
+
         $('#next-round').off('click');
       });
-
     }
+
   }
 
 // ROUND 3 ====================================
   if(player.coins === 5) {
+    clearInterval(startInterval);
     round = 3;
     const round2 = prompt("You have enough coins to go on to level 3! Would you like to keep going?", "yes/no");
     if(round2 === "yes" || round2 === "Yes" || round2 === "y") {
@@ -201,14 +215,19 @@ $('#next').on('click', (e) => {
       $('.customer li').remove();
 
       $('#next-round').on('click', (e) => {
+        timer(50);
         console.log("clicked next round");
-        secondRound.addMenuItem("Pancakes", "Grilled Cheese", "Cookies");
-        secondRound.changeCustomersLeft(7);
+        thirdRound.addMenuItem("Pancakes", "Grilled Cheese", "Cookies");
+        thirdRound.changeCustomersLeft(7);
         customer.customerOrder();
         $('#next-round').off('click');
       });
-
     }
+
+    if(player.coins < 18 && timeLeft <= 0) {
+      alert("You lose...");
+      setTimeout( function () {location.reload(true)}, 1000);
+    };
   }
 
 
