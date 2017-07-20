@@ -84,31 +84,43 @@ const nextOff = () => {
 
 
 // start game round 1 ======================================
+let round = 0;
+
 const start = () => {
-  customer.randomFood(1);
-  // customer.randomFood(Math.floor(Math.random() * (5 - 3)) + 3);
+  round = 1;
+  if(round === 1) {
+    customer.randomFood(1);
+    // customer.randomFood(Math.floor(Math.random() * (5 - 3)) + 3);
+  }
   customer.customerOrder();
 }
 start();
 
-// round 2 function ========================================
+// round 2 class ========================================
 
-const roundTwo = () => {
-  if(player.coins === 5) {
-    const round2 = prompt("You have enough coins to go on to level 2! Would you like to keep going?", "yes/no");
-    if(round2 === "yes" || round2 === "Yes" || round2 === "y") {
-      menu.push("waffles", "fried chicken", "spaghetti");
-      $('#menu').append($('<li>').text("Waffles"));
-      $('#menu').append($('<li>').text("Fried Chicken"));
-      $('#menu').append($('<li>').text("Spaghetti"));
-      player.customersLeft = 8;
-      $('#customers-left').text('Customers Left: ' + player.customersLeft);
-      customer.randomFood(Math.floor(Math.random() * (7 - 3)) + 3);
-    } else {
-      alert("Come back and play Rachel's Restaurant Rush!")
-    }
+class Rounds {
+  addMenuItem (str1, str2, str3) {
+    menu.push(str1, str2, str3);
+    $('#menu').append($('<li>').addClass('menu-items').text(str1));
+    $('#menu').append($('<li>').addClass('menu-items').text(str2));
+    $('#menu').append($('<li>').addClass('menu-items').text(str3));
+  }
+  changeCustomersLeft (num) {
+    player.customersLeft = num;
+    $('#customers-left').text('Customers Left: ' + player.customersLeft);
+  }
+  changeRandomFood (randomFunction) {
+    customer.randomFood(randomFunction);
   }
 };
+
+const secondRound = new Rounds();
+
+secondRound.addMenuItem("Waffles", "Fried Chicken", "Spaghetti");
+secondRound.changeCustomersLeft(8);
+// secondRound.changeRandomFood(Math.floor(Math.random() * (7 - 3)) + 3); //doesn't work
+
+
 
 
 // click events =============================================
@@ -129,7 +141,6 @@ $('#order-up').on('click', (e) => {
   console.log("Player coins: " + player.coins);
   console.log("Player xp: " + player.xp);
   console.log("Customers left: " + player.customersLeft);
-  roundTwo();
 });
 
 $('#next').on('click', (e) => {
@@ -137,11 +148,29 @@ $('#next').on('click', (e) => {
   player.orderCompletedArr = [];
   start();
   nextOff();
-})
+
+  if(player.coins === 5) {
+    const round2 = prompt("You have enough coins to go on to level 2! Would you like to keep going?", "yes/no");
+    if(round2 === "yes" || round2 === "Yes" || round2 === "y") {
+      alert("Click the Next Round button");
+      $('body').append($('<button>').text("Next Round").attr('id', 'next-round'));
+    }
+  }
+});
+
+$('#next-round').on('click', (e) => {
+  console.log("clicked next round");
+  // secondRound.addMenuItem("Waffles", "Fried Chicken", "Spaghetti");
+  // secondRound.changeCustomersLeft(8);
+  // secondRound.changeRandomFood(Math.floor(Math.random() * (7 - 3)) + 3);
+});
 
 
 
 
+// New menu items aren't being recognized as right
+// Next Round button not working
+// Math.random argument isn't changing
 
 
 
@@ -150,3 +179,24 @@ $('#next').on('click', (e) => {
 
 // windows onload end
 })
+
+
+// const roundTwo = () => {
+//   round = 2;
+//   if(player.coins === 5) {
+//     const round2 = prompt("You have enough coins to go on to level 2! Would you like to keep going?", "yes/no");
+//     if(round2 === "yes" || round2 === "Yes" || round2 === "y") {
+//       menu.push("waffles", "fried chicken", "spaghetti");
+//       $('#menu').append($('<li>').addClass('menu-items').text("Waffles"));
+//       $('#menu').append($('<li>').addClass('menu-items').text("Fried Chicken"));
+//       $('#menu').append($('<li>').addClass('menu-items').text("Spaghetti"));
+//       player.customersLeft = 8;
+//       $('#customers-left').text('Customers Left: ' + player.customersLeft);
+//       if(round === 2) {
+//         customer.randomFood(Math.floor(Math.random() * (7 - 3)) + 3);
+//       }
+//     } else {
+//       alert("Come back and play Rachel's Restaurant Rush!")
+//     }
+//   }
+// };

@@ -2,10 +2,6 @@ body {
   background-color: papayawhip;
 }
 
-.menu-items {
-  cursor: pointer;
-}
-
 .customer {
   border: 1px solid black;
   height: 200px;
@@ -32,4 +28,5 @@ body {
   /*border: 1px solid pink;*/
   width: 100px;
   margin: 10px 0;
+  cursor: pointer;
 }
