@@ -1,8 +1,6 @@
 // windows onload
 $(() => {
 
-  // Remove current customer order
-  // Loop through customer
 
 // Array of food on menu
 const menu = ["hamburger", "sandwich", "pizza", "coffee", "milkshake", "cupcake", "pie", "hot dog", "fries", "salad", "soda", "cake", "ice cream"];
@@ -27,7 +25,7 @@ const customer = {
   payForOrder() {
     if(this.happiness === true) {
       player.coins++;
-      player.xp++;
+      player.xp+=2;
       player.customersLeft--;
       $('#coins').text('Coins: ' + player.coins);
       $('#xp').text('XP: ' + player.xp);
@@ -37,7 +35,7 @@ const customer = {
       $('.customer li').remove();
     } else {
       player.coins--;
-      player.xp--;
+      player.xp-=2;
       $('#coins').text('Coins: ' + player.coins);
       $('#xp').text('XP: ' + player.xp);
       $('#customers-left').text('Customers Left: ' + player.customersLeft);
@@ -77,19 +75,44 @@ const player = {
 
 };
 
-// start game function ======================================
+// player can't click Next Customer below 0
+const nextOff = () => {
+  if(player.customersLeft < 0) {
+    $('#next').off('click');
+  }
+};
+
+
+// start game round 1 ======================================
 const start = () => {
   customer.randomFood(1);
+  // customer.randomFood(Math.floor(Math.random() * (5 - 3)) + 3);
   customer.customerOrder();
 }
-
-// customer.randomFood(Math.floor(Math.random() * (13 - 1)) + 1);
-
 start();
 
-$('#menu li').addClass('menu-items');
+// round 2 function ========================================
+
+const roundTwo = () => {
+  if(player.coins === 5) {
+    const round2 = prompt("You have enough coins to go on to level 2! Would you like to keep going?", "yes/no");
+    if(round2 === "yes" || round2 === "Yes" || round2 === "y") {
+      menu.push("waffles", "fried chicken", "spaghetti");
+      $('#menu').append($('<li>').text("Waffles"));
+      $('#menu').append($('<li>').text("Fried Chicken"));
+      $('#menu').append($('<li>').text("Spaghetti"));
+      player.customersLeft = 8;
+      $('#customers-left').text('Customers Left: ' + player.customersLeft);
+      customer.randomFood(Math.floor(Math.random() * (7 - 3)) + 3);
+    } else {
+      alert("Come back and play Rachel's Restaurant Rush!")
+    }
+  }
+};
+
 
 // click events =============================================
+$('#menu li').addClass('menu-items');
 
 $('.menu-items').on('click', (e) => {
   const menuText = $(e.currentTarget).text().toLowerCase();
@@ -106,13 +129,21 @@ $('#order-up').on('click', (e) => {
   console.log("Player coins: " + player.coins);
   console.log("Player xp: " + player.xp);
   console.log("Customers left: " + player.customersLeft);
+  roundTwo();
 });
 
 $('#next').on('click', (e) => {
   customer.orderArr = [];
   player.orderCompletedArr = [];
   start();
+  nextOff();
 })
+
+
+
+
+
+
 
 
 
