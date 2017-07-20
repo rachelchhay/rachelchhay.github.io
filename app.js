@@ -82,16 +82,14 @@ const player = {
 
 // player can't click Next Customer below 0
 const nextOff = () => {
-  if(player.customersLeft < 0) {
-    $('#next').off('click');
-  }
+  $('#next').off('click');
 };
 
 
 // start game round 1 ======================================
-
+let round = 0;
 const start = () => {
-    customer.randomFood(1);
+    customer.randomFood(1 + round);
     // customer.randomFood(Math.floor(Math.random() * (5 - 3)) + 3);
 
   customer.customerOrder();
@@ -160,12 +158,18 @@ $('#next').on('click', (e) => {
   customer.orderArr = [];
   player.orderCompletedArr = [];
   start();
-  nextOff();
+
+  if(player.customersLeft <= 0) {
+    nextOff();
+  }
+
 
   if(player.coins === 2) {
     const round2 = prompt("You have enough coins to go on to level 2! Would you like to keep going?", "yes/no");
     if(round2 === "yes" || round2 === "Yes" || round2 === "y") {
       alert("Click the Next Round button");
+
+      round = 2;
 
       $('.customer li').remove();
 
@@ -176,6 +180,7 @@ $('#next').on('click', (e) => {
         secondRound.addMenuItem("Waffles", "Fried Chicken", "Spaghetti");
         secondRound.changeCustomersLeft(8);
         secondRound.changeRandomFood(Math.floor(Math.random() * (7 - 3)) + 3);
+        $('#next-round').off('click');
       });
 
     }
