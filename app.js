@@ -127,6 +127,7 @@ const thirdRound = new Rounds();
 let timeLeft = 10;
 let startInterval;
 const timer = () => {
+
   startInterval = setInterval( () => {
     timeLeft--;
     if(timeLeft === 0) {
@@ -136,7 +137,7 @@ const timer = () => {
       setTimeout( function () {alert("You lose. You ran out of time.")}, 1000);
       setTimeout( function () {location.reload(true)}, 2000);
     };
-    $('#timer').text("Timer: " + timeLeft) }, 1000);
+    $('#timer').text("Timer: " + timeLeft).css({"font-size":"20px", "border":"1px solid #252A2B", "border-radius":"5px", "background-color":"#F2F3CE", "color":"#80C9A2", "padding":"10px 15px" }) }, 1000);
 }
 
 
@@ -187,12 +188,12 @@ $('#next').on('click', (e) => {
 
         $('.customer li').remove();
 
-        $('.buttons').append($('<button>').text("Next Round").attr('id', 'next-round'));
+        $('.buttons').append($('<button>').html('<span>Next Round</span>').attr('id', 'next-round'));
 
         $('#next-round').on('click', (e) => {
           timer();
           console.log("clicked next round");
-          secondRound.addMenuItem("Waffles", "Fried Chicken", "Spaghetti");
+          secondRound.addMenuItem("Waffles", "Tater Tots", "Spaghetti");
           secondRound.changeCustomersLeft(6);
           customer.customerOrder();
 
@@ -219,7 +220,7 @@ $('#next').on('click', (e) => {
           timeLeft = 50;
           timer();
           console.log("clicked next round");
-          thirdRound.addMenuItem("Pancakes", "Grilled Cheese", "Cookies");
+          thirdRound.addMenuItem("Pancakes", "Corn Dog", "Cookies");
           thirdRound.changeCustomersLeft(7);
           customer.customerOrder();
           $('#next-round').off('click');
