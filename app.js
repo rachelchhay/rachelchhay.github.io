@@ -127,18 +127,26 @@ const thirdRound = new Rounds();
 let timeLeft = 10;
 let startInterval;
 const timer = () => {
-
+  $('#game-status').append($('<li>').attr('id', 'timer'));
   startInterval = setInterval( () => {
     timeLeft--;
     if(timeLeft === 0) {
       clearInterval(startInterval);
     };
+    if(timeLeft <= 5) {
+      $('#timer').css('background-color', '#E44870');
+    };
     if(player.coins < 18 && timeLeft === 0) {
       setTimeout( function () {alert("You lose. You ran out of time.")}, 1000);
       setTimeout( function () {location.reload(true)}, 2000);
     };
-    $('#timer').text("Timer: " + timeLeft).css({"font-size":"20px", "border":"1px solid #252A2B", "border-radius":"5px", "background-color":"#F2F3CE", "color":"#80C9A2", "padding":"10px 15px" }) }, 1000);
+    $('#timer').text("Timer: " + timeLeft).css({"font-size":"25px", "border":".5px outset #80C9A2", "border-radius":"5px", "background-color":"#80C9A2", "padding":"8px 10px", "box-shadow":"7px 7px 20px #34383D" }) }, 1000);
+
 }
+
+// if(timeLeft <= 5) {
+//   $('#timer').addClass('blink').toggleClass('blink');
+// };
 
 
 // click events =============================================

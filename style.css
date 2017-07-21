@@ -151,3 +151,7 @@ button:hover span:after {
   justify-content: space-around;
   margin: 170px 50px 20px;
 }
+
+.blink {
+  background-color: #E44870;
+}
