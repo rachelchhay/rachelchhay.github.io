@@ -1,5 +1,22 @@
 body {
-  background-color: papayawhip;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.menu-div {
+  height: 100px;
+  width: 60%;
+}
+
+.customer-div {
+  display: flex;
+  justify-content: center;
+  width: 40%;
+
 }
 
 .customer {
@@ -13,59 +30,39 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
+  background-image: url(image/checkerboard.jpg);
+  background-position: center;
+  background-size: 300px;
+  height: 80px;
 }
 
 #menu {
-  /*border: 1px solid blue;*/
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   list-style: none;
+  justify-content: center;
   margin: 20px 100px;
 }
 
 .menu-items {
-  /*border: 1px solid pink;*/
   width: 100px;
-  margin: 10px 0;
   cursor: pointer;
+  border: 1px outset #E44870;
+  background-color: #E44870;
+  color: #fff;
+  text-align: center;
+  font-size: 20px;
+  padding: 5px 5px;
+  margin: 10px;
 }
 
-
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+#coins, #xp, #customers-left {
+  font-size: 25px;
+  border: .5px outset #80C9A2;
+  border-radius: 5px;
+  background-color: #80C9A2;
+  padding: 8px 10px;
+  box-shadow: 7px 7px 20px #34383D;
 }

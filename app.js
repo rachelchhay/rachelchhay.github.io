@@ -198,6 +198,9 @@ $('#next').on('click', (e) => {
 
           $('#next-round').off('click');
         });
+      } else{
+        setTimeout( function () {alert("Come back when you want to play!")}, 1000);
+        setTimeout( function () {location.reload(true)}, 2000);
       }
 
     }
@@ -221,6 +224,9 @@ $('#next').on('click', (e) => {
           customer.customerOrder();
           $('#next-round').off('click');
         });
+      } else{
+        setTimeout( function () {alert("Come back when you want to play!")}, 1000);
+        setTimeout( function () {location.reload(true)}, 2000);
       }
 
     }
