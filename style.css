@@ -30,6 +30,14 @@ body {
   transform: rotate(6deg);
 }
 
+.customer span {
+  text-decoration: underline;
+}
+
+.customer li {
+  list-style: none;
+}
+
 /*Modified speech bubble code from: https://1stwebdesigner.com/css-shapes/*/
 
 .customer-div {
@@ -101,7 +109,7 @@ body {
   transform: translateY(3px);
 }
 
-#coins, #xp, #customers-left {
+#coins, #xp, #customers-left, #timer {
   font-size: 25px;
   border: .5px outset #80C9A2;
   border-radius: 5px;
@@ -153,5 +161,5 @@ button:hover span:after {
 }
 
 .blink {
-  background-color: #E44870;
+  background: #E44870 !important;
 }

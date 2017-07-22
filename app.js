@@ -129,24 +129,21 @@ let startInterval;
 const timer = () => {
   $('#game-status').append($('<li>').attr('id', 'timer'));
   startInterval = setInterval( () => {
-    timeLeft--;
+    $('#timer').text("Timer: " + timeLeft);
+    if(timeLeft <= 5) {
+      $('#timer').toggleClass('blink');
+    };
     if(timeLeft === 0) {
       clearInterval(startInterval);
-    };
-    if(timeLeft <= 5) {
-      $('#timer').css('background-color', '#E44870');
     };
     if(player.coins < 18 && timeLeft === 0) {
       setTimeout( function () {alert("You lose. You ran out of time.")}, 1000);
       setTimeout( function () {location.reload(true)}, 2000);
     };
-    $('#timer').text("Timer: " + timeLeft).css({"font-size":"25px", "border":".5px outset #80C9A2", "border-radius":"5px", "background-color":"#80C9A2", "padding":"8px 10px", "box-shadow":"7px 7px 20px #34383D" }) }, 1000);
+    timeLeft--;
+     }, 1000);
 
 }
-
-// if(timeLeft <= 5) {
-//   $('#timer').addClass('blink').toggleClass('blink');
-// };
 
 
 // click events =============================================
@@ -243,6 +240,10 @@ $('#next').on('click', (e) => {
 
 });
 
+// NOT WORKING========>
+// if(timeLeft <= 5) {
+//   $('#timer').addClass('blink').toggleClass('blink');
+// };
 
 
 // windows onload end
