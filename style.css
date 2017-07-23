@@ -1,8 +1,23 @@
 body {
   margin: 0;
   background-image: url(image/background.jpg);
-  background-position: center;
   background-size: cover;
+}
+
+h1 {
+  font-family: 'Titan One', cursive;
+  font-size: 50px;
+  letter-spacing: 3px;
+  margin: 5px 0;
+  border: 1px solid #fff;
+  background-color: #fff;
+  opacity: 0.95;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.yellow {
+  border: 10px dotted yellow;
 }
 
 .container {
@@ -16,6 +31,7 @@ body {
   width: 50%;
   background-image: url(image/vintage.jpg);
   border-radius: 10px;
+  font-family: 'Cabin Sketch', cursive;
 }
 
 .menu-div h2 {
@@ -41,19 +57,21 @@ body {
 /*Modified speech bubble code from: https://1stwebdesigner.com/css-shapes/*/
 
 .speech-bubbles {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
 }
 
 .customer-div, .player-div {
   display: flex;
   justify-content: center;
   width: 180px;
-  height: 200px;
+  height: 300px;
   background: #F2F3CE;
   position: relative;
   border-radius: 12px;
-  margin-right: 50px;
+  font-family: 'Patrick Hand SC', cursive;
+  font-size: 20px;
+  letter-spacing: 1px;
+  padding-right: 15px;
 }
 
 .customer-div:before {
@@ -68,6 +86,16 @@ body {
   border-bottom: 13px solid transparent;
 }
 
+.customer-div {
+  margin-right: 180px;
+  margin-top: 20px;
+}
+
+.player-div {
+  margin-right: 50px;
+  margin-top: 200px;
+}
+
 #game-status {
   list-style: none;
   display: flex;
@@ -78,6 +106,9 @@ body {
   background-position: center;
   background-size: 300px;
   height: 80px;
+  font-family: 'Cabin Sketch', cursive;
+  font-weight: 700;
+  margin-top: 10px;
 }
 
 #menu {
@@ -115,7 +146,7 @@ body {
 }
 
 #coins, #xp, #customers-left, #timer {
-  font-size: 25px;
+  font-size: 30px;
   border: .5px outset #80C9A2;
   border-radius: 5px;
   background-color: #80C9A2;
@@ -133,6 +164,7 @@ button {
   cursor: pointer;
   color: #F2F3CE;
   background-color: #80C9A2;
+  font-family: 'Cabin Sketch', cursive;
 }
 
 button span {

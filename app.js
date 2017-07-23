@@ -247,11 +247,6 @@ $('#next').on('click', (e) => {
 
 });
 
-// NOT WORKING========>
-// if(timeLeft <= 5) {
-//   $('#timer').addClass('blink').toggleClass('blink');
-// };
-
 
 // windows onload end
 })
