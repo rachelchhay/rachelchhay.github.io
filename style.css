@@ -30,17 +30,22 @@ body {
   transform: rotate(6deg);
 }
 
-.customer span {
+.customer span, .player span {
   text-decoration: underline;
 }
 
-.customer li {
+.customer li, .player li {
   list-style: none;
 }
 
 /*Modified speech bubble code from: https://1stwebdesigner.com/css-shapes/*/
 
-.customer-div {
+.speech-bubbles {
+  display: flex;
+  flex-direction: column;
+}
+
+.customer-div, .player-div {
   display: flex;
   justify-content: center;
   width: 180px;

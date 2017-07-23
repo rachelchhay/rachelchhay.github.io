@@ -33,6 +33,7 @@ const customer = {
       // reset customer properties
       this.happiness = false;
       $('.customer li').remove();
+      $('.player li').remove();
     } else {
       player.coins--;
       player.xp-=2;
@@ -41,6 +42,7 @@ const customer = {
       $('#customers-left').text('Customers Left: ' + player.customersLeft);
       // reset customer properties
       $('.customer li').remove();
+      $('.player li').remove();
     }
   }
 };
@@ -153,11 +155,16 @@ $('.menu-items').on('click', (e) => {
   const menuText = $(e.currentTarget).text().toLowerCase();
   player.orderCompletedArr.push(menuText);
   console.log(player.orderCompletedArr);
+
+  for(let i = 0; i < player.orderCompletedArr.length; i++) {
+    const orderReady = $('<li/>').html(player.orderCompletedArr[i]);
+    $('.player').append(orderReady);
+  }
+
 });
 
 $('#order-up').on('click', (e) => {
   player.checkOrder();
-  console.log(customer.happiness);
   customer.payForOrder();
   console.log("Player coins: " + player.coins);
   console.log("Player xp: " + player.xp);
