@@ -156,11 +156,9 @@ $('.menu-items').on('click', (e) => {
   const menuText = $(e.currentTarget).text().toLowerCase();
   player.orderCompletedArr.push(menuText);
   console.log(player.orderCompletedArr);
+  const orderReady = $('<li/>').html($(e.currentTarget).text());
+  $('.player').append(orderReady);
 
-  for(let i = 0; i < player.orderCompletedArr.length; i++) {
-    const orderReady = $('<li/>').html(player.orderCompletedArr[i]);
-    $('.player').append(orderReady);
-  }
 
 });
 
