@@ -43,4 +43,5 @@ Possible Additions:
 - I could have an actual customer animated it when the speech bubble text changes.
 - I can add animation effects to the speech bubble texts.
 - Audio added for when timer hits 10s.
+- Make the Order Up and Next Customer button the same button but changes.
 
