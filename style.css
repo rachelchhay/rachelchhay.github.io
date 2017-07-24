@@ -243,7 +243,7 @@ button:hover span:after {
     font-family: 'Patrick Hand SC', cursive;
     font-size: 30px;
     background-color: #80C9A2;
-    margin: 10% auto; /* 15% from the top and centered */
+    margin: 5% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #80C9A2;
     width: 80%; /* Could be more or less, depending on screen size */
