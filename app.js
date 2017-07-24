@@ -1,6 +1,17 @@
 // windows onload
 $(() => {
 
+  $('#directions').on('click', (e) => {
+    $('.modal').fadeIn();
+  });
+
+  $('.close-modal').eq(0).on('click', (e) => {
+    $('.modal').fadeOut();
+  });
+
+
+
+
 
 // Array of food on menu
 const menu = ["hamburger", "sandwich", "pizza", "coffee", "milkshake", "cupcake", "pie", "hot dog", "fries", "salad", "soda", "cake", "ice cream"];

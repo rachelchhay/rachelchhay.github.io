@@ -17,7 +17,17 @@
     <script src="app.js" charset="utf-8"></script>
   </head>
   <body>
-    <h1>Rachel's Restaurant Rush</h1>
+    <div class="header">
+      <h1>Rachel's Restaurant Rush</h1>
+      <button type="button" id="directions"><span>Directions</span></button>
+    </div>
+
+    <div id="myModal", class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <p>Insert directions</p>
+      </div>
+    </div>
 
     <ul id=game-status>
       <li id= "coins">Coins: 0</li>
