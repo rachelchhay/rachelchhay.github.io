@@ -121,7 +121,6 @@ const thirdRound = new Rounds();
 let timeLeft = 90;
 let startInterval;
 const timer = () => {
-  $('#game-status').append($('<li>').attr('id', 'timer'));
   startInterval = setInterval( () => {
     $('#timer').text("Timer: " + timeLeft);
     if(timeLeft <= 10) {
@@ -157,6 +156,7 @@ $('#order-up').on('click', (e) => {
   $('#orderUpAudio')[0].play();
   player.checkOrder();
   customer.payForOrder();
+  console.log(player.customersLeft);
 
   // win or lose the game
   if(player.coins <= 0 || player.xp <= 0) {
@@ -176,18 +176,16 @@ $('#next').on('click', (e) => {
     player.orderCompletedArr = [];
     start();
 
-    if(player.customersLeft <= 0) {
-      nextOff();
-    }
-
   // ROUND 2 ====================================
     if(player.coins === 4) {
       round = 2;
       const round2 = prompt("You have enough coins to go on to level 2! Would you like to keep going?", "yes/no");
       if(round2 === "yes" || round2 === "Yes" || round2 === "y") {
-        alert("Click the Next Round button");
+        alert("Click the Next Round button. WARNING: You only have 90 seconds to get 9 coins in this round!");
 
         $('.customer li').remove();
+
+        $('#game-status').append($('<li>').attr('id', 'timer'));
 
         $('.buttons').append($('<button>').html('<span>Next Round</span>').attr('id', 'next-round'));
 
@@ -205,7 +203,8 @@ $('#next').on('click', (e) => {
         setTimeout( function () {location.reload(true)}, 2000);
       }
 
-    }
+    };
+
 
   // ROUND 3 ====================================
     if(player.coins === 9) {
@@ -213,17 +212,17 @@ $('#next').on('click', (e) => {
       round = 3;
       const round2 = prompt("You have enough coins to go on to level 3! Would you like to keep going?", "yes/no");
       if(round2 === "yes" || round2 === "Yes" || round2 === "y") {
-        alert("Click the Next Round button");
+        alert("Click the Next Round button. WARNING: You only have 80 seconds to get 15 coins to win the game!");
 
         $('.customer li').remove();
 
         $('#next-round').on('click', (e) => {
-          timeLeft = 70;
+          timeLeft = 80;
           timer();
           thirdRound.addMenuItem("Pancakes", "Corn Dog", "Cookies");
           thirdRound.changeCustomersLeft(6);
           customer.customerOrder();
-          $('#next-round').off('click');
+          $('#next-round').remove();
         });
       } else{
         setTimeout( function () {alert("Come back when you want to play!")}, 1000);
