@@ -152,6 +152,7 @@ const timer = () => {
 $('#menu li').addClass('menu-items');
 
 $('.menu-items').on('click', (e) => {
+  $('#buttonAudio')[0].play();
   const menuText = $(e.currentTarget).text().toLowerCase();
   player.orderCompletedArr.push(menuText);
   console.log(player.orderCompletedArr);
@@ -164,6 +165,7 @@ $('.menu-items').on('click', (e) => {
 });
 
 $('#order-up').on('click', (e) => {
+  $('#orderUpAudio')[0].play();
   player.checkOrder();
   customer.payForOrder();
   console.log("Player coins: " + player.coins);
@@ -183,6 +185,7 @@ $('#order-up').on('click', (e) => {
 });
 
 $('#next').on('click', (e) => {
+    $('#buttonAudio')[0].play();
     customer.orderArr = [];
     player.orderCompletedArr = [];
     start();
@@ -203,6 +206,7 @@ $('#next').on('click', (e) => {
         $('.buttons').append($('<button>').html('<span>Next Round</span>').attr('id', 'next-round'));
 
         $('#next-round').on('click', (e) => {
+          $('#buttonAudio')[0].play();
           timer();
           console.log("clicked next round");
           secondRound.addMenuItem("Waffles", "Tater Tots", "Spaghetti");
