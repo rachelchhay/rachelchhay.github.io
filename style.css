@@ -81,18 +81,30 @@ h1 {
   right: 100%;
   top: 38px;
   position: absolute;
-  border-top: 13px solid transparent;
-  border-right: 26px solid #F2F3CE;
-  border-bottom: 13px solid transparent;
+  border-top: 26px solid transparent;
+  border-right: 52px solid #F2F3CE;
+  border-bottom: 26px solid transparent;
+}
+
+.player-div:after {
+  content: "";
+  width: 0;
+  height: 0;
+  left: 100%;
+  top: 38px;
+  position: absolute;
+  border-top: 26px solid transparent;
+  border-left: 52px solid #F2F3CE;
+  border-bottom: 26px solid transparent;
 }
 
 .customer-div {
   margin-right: 180px;
-  margin-top: 20px;
+  margin-top: 45px;
 }
 
 .player-div {
-  margin-right: 50px;
+  margin-right: 70px;
   margin-top: 200px;
 }
 
