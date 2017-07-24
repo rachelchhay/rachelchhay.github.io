@@ -2,10 +2,12 @@
 $(() => {
 
   $('#directions').on('click', (e) => {
+    $('#buttonAudio')[0].play();
     $('.modal').fadeIn();
   });
 
   $('.close-modal').eq(0).on('click', (e) => {
+    $('#buttonAudio')[0].play();
     $('.modal').fadeOut();
   });
 
