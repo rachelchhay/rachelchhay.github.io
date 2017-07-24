@@ -131,7 +131,7 @@ const secondRound = new Rounds();
 const thirdRound = new Rounds();
 
 // Set Timer Function =======================================
-let timeLeft = 90;
+let timeLeft = 70;
 let startInterval;
 const timer = () => {
   startInterval = setInterval( () => {
@@ -194,15 +194,15 @@ $('#next').on('click', (e) => {
       round = 2;
       const round2 = prompt("You have enough coins to go on to level 2! Would you like to keep going?", "yes/no");
       if(round2 === "yes" || round2 === "Yes" || round2 === "y") {
-        alert("Click the Next Round button. WARNING: You only have 90 seconds to get 9 coins in this round!");
+        alert("Click the Next Round button. WARNING: You only have 70 seconds to get 9 coins in this round!");
 
         $('.customer li').remove();
-
-        $('#game-status').append($('<li>').attr('id', 'timer'));
 
         $('.buttons').append($('<button>').html('<span>Next Round</span>').attr('id', 'next-round'));
 
         $('#next-round').on('click', (e) => {
+          $('#game-status').append($('<li>').attr('id', 'timer'));
+
           $('#buttonAudio')[0].play();
           timer();
           secondRound.addMenuItem("Waffles", "Tater Tots", "Spaghetti");
@@ -225,12 +225,12 @@ $('#next').on('click', (e) => {
       round = 3;
       const round2 = prompt("You have enough coins to go on to level 3! Would you like to keep going?", "yes/no");
       if(round2 === "yes" || round2 === "Yes" || round2 === "y") {
-        alert("Click the Next Round button. WARNING: You only have 80 seconds to get 15 coins to win the game!");
+        alert("Click the Next Round button. WARNING: You only have 90 seconds to get 15 coins to win the game!");
 
         $('.customer li').remove();
 
         $('#next-round').on('click', (e) => {
-          timeLeft = 80;
+          timeLeft = 90;
           timer();
           thirdRound.addMenuItem("Pancakes", "Corn Dog", "Cookies");
           thirdRound.changeCustomersLeft(6);
